@@ -35,7 +35,7 @@ ograniczonym zakresie) 8.0
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_prefix}/lib}
 perl install -g
 
 %clean
@@ -45,4 +45,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README announce *.html elser/*.html elser/word6/*.html
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/laola
+%{_prefix}/lib/laola
