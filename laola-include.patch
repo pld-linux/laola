@@ -1,0 +1,55 @@
+--- lclean.orig	Tue Jul  1 02:09:34 1997
++++ lclean	Fri Sep 10 22:08:50 1999
+@@ -733,7 +733,7 @@
+    }
+    if ($sys_os eq "unix") {
+       splice(@INC, 0, 0, 
+-             ($ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7]).'/lib/perl/');
++             '/usr/lib/laola/');
+    }
+    require "laola.pl";
+    require "getopts.pl";
+--- ldat.orig	Tue Jul  1 02:09:34 1997
++++ ldat	Fri Sep 10 22:08:50 1999
+@@ -515,7 +515,7 @@
+    }
+    if ($sys_os eq "unix") {
+       splice(@INC, 0, 0, 
+-             ($ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7]).'/lib/perl/');
++             '/usr/lib/laola/');
+    }
+    require "laola.pl";
+    require "getopts.pl";
+--- lhalw.orig	Tue Jul  1 02:09:34 1997
++++ lhalw	Fri Sep 10 22:08:50 1999
+@@ -324,7 +324,7 @@
+    }
+    if ($sys_os eq "unix") {
+       splice(@INC, 0, 0, 
+-             ($ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7]).'/lib/perl/');
++             '/usr/lib/laola/');
+    }
+    require "getopts.pl";
+    &Getopts ($opts.'o:'); 
+--- lls.orig	Tue Jul  1 02:09:34 1997
++++ lls	Fri Sep 10 22:08:50 1999
+@@ -223,7 +223,7 @@
+    }
+    if ($sys_os eq "unix") {
+       splice(@INC, 0, 0, 
+-             ($ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7]).'/lib/perl/');
++             '/usr/lib/laola/');
+    }
+    require "laola.pl";
+    require "getopts.pl";
+--- elser/elser.orig	Thu Oct 29 19:49:15 1998
++++ elser/elser	Fri Sep 10 22:10:13 1999
+@@ -487,7 +487,7 @@
+    }
+    if ($sys_os eq "unix") {
+       splice(@INC, 0, 0, 
+-             ($ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7]).'/lib/perl/');
++             '/usr/lib/laola/');
+    }
+    require "getopts.pl";
+    &Getopts ($opts.'ho:'); 

@@ -1,0 +1,207 @@
+--- install.orig	Thu Oct 29 19:49:15 1998
++++ install	Fri Sep 10 21:23:08 1999
+@@ -58,20 +58,15 @@
+       "elser/word6", "elser"
+    );
+    @dist_files = (
+-      # misc
+-      "COPYING", "README", "get-perl.html", 
+       # laola
+-      "INDEX", "announce", 
+-      "ari.html", "guide.html", "history.html", "index.html", "install", 
+-      "install.pl", "INSTALL.TXT", "laola.pl", "lclean", "lcle-doc.html", 
+-      "lcle-out.html", "ldat", "ldat-out.html", "lhalw", "lls", 
+-      "lls-out.html", "ref.html",
++      "install", 
++      "install.pl", "laola.pl", "lclean", 
++      "ldat", "lhalw", "lls", 
+       # elser
+-      "elser/elser", "elser/elserdb.pl", "elser/elser.html", "elser/macro.pl",
+-      "elser/mapmem.pl", "elser/password.html", "elser/pwhash", 
+-      "elser/sources.html", "elser/textutil.pl", 
+-      "elser/vita.html", "elser/vita-d.html",
+-      "elser/word6/decrypt.pl", "elser/word6/format.html",
++      "elser/elser", "elser/elserdb.pl", "elser/macro.pl",
++      "elser/mapmem.pl", "elser/pwhash", 
++      "elser/textutil.pl", 
++      "elser/word6/decrypt.pl",
+       "elser/word6/macro.dot", "elser/word6/macrolib.pl", 
+       "elser/word6/macro.txt", "elser/word6/struct.pl",
+    );
+--- install.pl.orig	Tue Jul  1 02:09:34 1997
++++ install.pl	Fri Sep 10 21:24:31 1999
+@@ -38,6 +38,8 @@
+    exit &usage if $opt_h;
+    exit &cleanup() if $opt_c;
+ 
++   $RpmBuildRoot = $ENV{'RPM_BUILD_ROOT'};
++   
+    &msg("Starting installation of Laola and Elser. (-h for help)\n");
+    &fail() if !&msg2 (&check_complete);
+    &fail() if !&msg2 (&get_os);
+@@ -76,33 +78,34 @@
+    }
+    $sys_os =~ tr/[A-Z]/[a-z]/;
+ 
+-   if (!&permit("\nDo you run a kind of $ostype operating system?")) {
+-      return 
+-         "Confusion about your operating system. Please change settings\n"
+-         ."       in this install program manually!"
+-      ;
+-   }
+-      
+-   if ($sys_os eq "dos") {
+-      $HomePath = "C:/" if !$HomePath;
+-   } else {
+-      $HomePath = $ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7];
+-   }
+-   return "Cannot find home directory!" if !$HomePath;
+-
+-   if ($sys_os eq "dos") {
+-      &msg("Converting distribution files to DOS text format...");
+-      return $error if !&unix2dos(@dist_files);
+-      &msg(" Done.\n\n");
+-   }
++#    if (!&permit("\nDo you run a kind of $ostype operating system?")) {
++#       return 
++#          "Confusion about your operating system. Please change settings\n"
++#          ."       in this install program manually!"
++#       ;
++#    }
++#       
++#    if ($sys_os eq "dos") {
++#       $HomePath = "C:/" if !$HomePath;
++#    } else {
++#       $HomePath = $ENV{'HOME'}||$ENV{'LOGDIR'}||(getpwuid($<))[7];
++#    }
++#    return "Cannot find home directory!" if !$HomePath;
++# 
++#    if ($sys_os eq "dos") {
++#       &msg("Converting distribution files to DOS text format...");
++#       return $error if !&unix2dos(@dist_files);
++#       &msg(" Done.\n\n");
++#    }
+ 
+    return "ok";
+ }
+ 
+ sub get_defaults {
+    if (($sys_os eq "unix") && $opt_g) {
+-      $LibraryPath = "/usr/lib/laola" if !$LibraryPath;
+-      $ExecutePath = "/usr/bin"       if !$ExecutePath;
++      $LibraryPath = "$RpmBuildRoot/usr/lib/laola" if !$LibraryPath;
++      $ConstLibraryPath = "/usr/lib/laola";
++      $ExecutePath = "$RpmBuildRoot/usr/bin"       if !$ExecutePath;
+       $dir_permit=0755                if !$dir_permit;
+       $lib_permit=0644                if !$lib_permit;
+       $exe_permit=0755                if !$exe_permit;
+@@ -145,7 +148,7 @@
+    &msg("\nThe source code and information files will be stored in directory:"
+         ."\nLibraryPath = \"$LibraryPath\". "
+    );
+-   return if !&msg2 (&ok("Is this ok?"));
++#  return if !&msg2 (&ok("Is this ok?"));
+ 
+    if ($sys_os eq "unix") {
+       if (!$opt_l) {
+@@ -159,7 +162,7 @@
+    &msg("$msg will be placed to directory:\n"
+       ."ExecutePath = \"$ExecutePath\". "
+    );
+-   return if !&msg2 (&ok("Correct?"));
++#   return if !&msg2 (&ok("Correct?"));
+ 
+    "ok";
+ }
+@@ -179,9 +182,9 @@
+    return "ok" if $PerlExePath;
+    $PerlExePath = &which($^X);
+    return "Cannot find perl executable!" if !$PerlExePath;
+-   return "Where is perl executable?" if !&permit(
+-      "Perl executable is \"$PerlExePath\". Right?"
+-   );
++#   return "Where is perl executable?" if !&permit(
++#      "Perl executable is \"$PerlExePath\". Right?"
++#   );
+    "ok";
+ }
+ 
+@@ -198,7 +201,7 @@
+             ."programs\n"
+             ."will be placed there. Is this ok?"
+          );
+-         return $error if !&my_mkdir("$HomePath/lib/perl");
++#         return $error if !&my_mkdir("$HomePath/lib/perl");
+       }
+       $lib="$HomePath/lib/perl";
+    } 
+@@ -231,22 +234,22 @@
+    }
+    
+    # Copy / link perl library files from distributionpath to library path
+-   foreach $dir (@lib_dirs) {
+-      return $error if !&my_mkdir($PerlLibPath."/".$dir);
+-   }
+-   if ($sys_os eq "unix") {
+-      &msg("Creating symbolic links to library files.\n");
+-   } else {
+-      &msg("Copying library files.\n");
+-   }
+-   foreach $file (keys %lib_files) {
+-      return $error if ! &do_library($file);
+-   }
+-
+-   local($warn)=
+-      "This file has been generated automatically by Laola's install $REV."
+-   ;
+-
++#    foreach $dir (@lib_dirs) {
++#       return $error if !&my_mkdir($PerlLibPath."/".$dir);
++#    }
++#    if ($sys_os eq "unix") {
++#       &msg("Creating symbolic links to library files.\n");
++#    } else {
++#       &msg("Copying library files.\n");
++#    }
++#    foreach $file (keys %lib_files) {
++#       return $error if ! &do_library($file);
++#    }
++# 
++#    local($warn)=
++#       "This file has been generated automatically by Laola's install $REV."
++#    ;
++# 
+    # Create shell files / links to executable programs
+    if ($sys_os eq "unix") {
+       if ($opt_l) {
+@@ -257,18 +260,19 @@
+    } else {
+       &msg("Creating .BAT files.\n");
+    }
+-   foreach $file (keys %executables) {
+-      return $error if !&do_executables(
+-         $LibraryPath."/".$file, $ExecutePath."/".$executables{$file}
+-      );
+-   }
+-
+-   if ($LibraryPath ne $ENV{$PWD}) {
+-      # Delete temporary files.
+-      &cleanup();
+-   } else {
++  foreach $file (keys %executables) {
++     return $error if !&do_executables(
++        $ConstLibraryPath."/".$file, $ExecutePath."/".$executables{$file}
++     );
++  }
++#
++#    if ($LibraryPath ne $ENV{$PWD}) {
++#     # Delete temporary files.
++#       &cleanup();
++# 
++#    } else {
+       "ok";
+-   }
++#    }
+ }
+ 
+ sub do_library {
