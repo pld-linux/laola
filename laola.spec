@@ -13,6 +13,7 @@ Source0:	http://www.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-include.patch
 Requires:	perl >= 4
+BuildRequires:	unzip
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
