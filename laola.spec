@@ -14,7 +14,7 @@ Patch0: %{name}-install.patch
 Patch1: %{name}-include.patch
 Requires: perl >= 4
 BuildArch: noarch
-BuildRoot: /tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 laola is a set of perl-based tools and libraries, able to extract/modify data in MS-Word .doc files. Can work with MS-Word 6.0, 7.0 files, and in a limited range with MS-W 8.0. 
