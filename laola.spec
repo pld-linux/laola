@@ -2,7 +2,7 @@ Summary:	A set of tools to extract data from MS-Word .doc files
 Summary(pl):	Zestaw narzêdzi s³u¿±cych do obs³ugi plików zapisanych w formacie MS-Word
 Name:		laola
 Version:	013
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Text
 Source0:	http://user.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
