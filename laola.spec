@@ -7,6 +7,7 @@ License:	GPL
 Group:		Applications/Text
 URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/laola.html
 Source0:	http://user.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
+# Source0-md5:	a5590117dacf2a850ff0d66e35c76a00
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-include.patch
 URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/
