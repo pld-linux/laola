@@ -1,13 +1,13 @@
-Summary:	a set of tools to extract data from MS-Word .doc files
-Summary(pl):	zestaw narzêdzi s³u¿±cych do obs³ugi plików zapisanych w formacie MS-Word
+Summary:	A set of tools to extract data from MS-Word .doc files
+Summary(pl):	Zestaw narzêdzi s³u¿±cych do obs³ugi plików zapisanych w formacie MS-Word
 Name:		laola
 Version:	013
-Release:	1
-Group:		Utilities/Text
-Group(fr):	Utilitaires/Texte
-Group(pl):	Narzêdzia/Tekst
+Release:	2
 License:	GPL
-Vendor:		PLD
+Group:		Applications/Text
+Group(de):	Applikationen/Text
+Group(fr):	Utilitaires/Texte
+Group(pl):	Aplikacje/Tekst
 URL:		http://www.cs.tu-berlin.de/~schwartz/pmh/laola.html
 Source0:	http://www.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
 Patch0:		%{name}-install.patch
@@ -35,15 +35,12 @@ ograniczonym zakresie) 8.0
 %patch0
 %patch1
 
-%build
-# no build needed
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/{bin,lib}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}}
 perl install -g
 
-%post
+gzip -9nf README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -51,7 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/laola/
-%doc README announce *.html
+%{_libdir}/laola
+%doc README.gz announce *.html
 %doc elser/*.html
 %doc elser/word6/*.html
