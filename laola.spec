@@ -5,9 +5,6 @@ Version:	013
 Release:	2
 License:	GPL
 Group:		Applications/Text
-Group(de):	Applikationen/Text
-Group(fr):	Utilitaires/Texte
-Group(pl):	Aplikacje/Tekst
 URL:		http://www.cs.tu-berlin.de/~schwartz/pmh/laola.html
 Source0:	http://www.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
 Patch0:		%{name}-install.patch
