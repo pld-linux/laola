@@ -1,8 +1,9 @@
+%include	/usr/lib/rpm/macros.perl
 Summary:	A set of tools to extract data from MS-Word .doc files
 Summary(pl):	Zestaw narzêdzi s³u¿±cych do obs³ugi plików zapisanych w formacie MS-Word
 Name:		laola
 Version:	013
-Release:	3
+Release:	3.1
 License:	GPL
 Group:		Applications/Text
 Source0:	http://user.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
@@ -11,11 +12,11 @@ Patch0:		%{name}-install.patch
 Patch1:		%{name}-include.patch
 URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/laola.html
 BuildRequires:	unzip
-Requires:	perl >= 4
+BuildRequires:	perl-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_unzipbin	/usr/bin/unzip -o -d %{name}-%{version}
+%define		_unzipbin	%{_bindir}/unzip -o -d %{name}-%{version}
 
 %description
 laola is a set of perl-based tools and libraries, able to
@@ -36,7 +37,7 @@ ograniczonym zakresie) 8.0
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_prefix}/lib}
-perl install -g
+%{__perl} install -g
 
 %clean
 rm -rf $RPM_BUILD_ROOT
