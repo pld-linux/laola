@@ -37,8 +37,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}}
 perl install -g
 
-gzip -9nf README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -46,6 +44,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/laola
-%doc README.gz announce *.html
+%doc README announce *.html
 %doc elser/*.html
 %doc elser/word6/*.html
