@@ -5,14 +5,13 @@ Version:	013
 Release:	2
 License:	GPL
 Group:		Applications/Text
-URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/laola.html
 Source0:	http://user.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
 # Source0-md5:	a5590117dacf2a850ff0d66e35c76a00
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-include.patch
-URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/
-Requires:	perl >= 4
+URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/laola.html
 BuildRequires:	unzip
+Requires:	perl >= 4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,8 +43,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README announce *.html elser/*.html elser/word6/*.html
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/laola
-%doc README announce *.html
-%doc elser/*.html
-%doc elser/word6/*.html
