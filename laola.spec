@@ -5,10 +5,11 @@ Version:	013
 Release:	2
 License:	GPL
 Group:		Applications/Text
-URL:		http://www.cs.tu-berlin.de/~schwartz/pmh/laola.html
-Source0:	http://www.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
+URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/laola.html
+Source0:	http://user.cs.tu-berlin.de/~schwartz/pmh/%{name}%{version}.zip
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-include.patch
+URL:		http://user.cs.tu-berlin.de/~schwartz/pmh/
 Requires:	perl >= 4
 BuildRequires:	unzip
 BuildArch:	noarch
