@@ -16,6 +16,8 @@ Requires:	perl >= 4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_unzipbin	/usr/bin/unzip -o -d %{name}-%{version}
+
 %description
 laola is a set of perl-based tools and libraries, able to
 extract/modify data in MS-Word .doc files. Can work with MS-Word 6.0,
@@ -28,8 +30,7 @@ MS-Worda. Umo¿liwia pracê z plikami MS-Word 6.0, 7.0, oraz (w
 ograniczonym zakresie) 8.0
 
 %prep
-%setup -q -T -c
-unzip -q $RPM_SOURCE_DIR/%{name}%{version}.zip
+%setup -q
 %patch0
 %patch1
 
