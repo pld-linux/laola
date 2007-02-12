@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	A set of tools to extract data from MS-Word .doc files
-Summary(pl):	Zestaw narzêdzi s³u¿±cych do obs³ugi plików zapisanych w formacie MS-Word
+Summary(pl.UTF-8):   Zestaw narzÄ™dzi sÅ‚uÅ¼Ä…cych do obsÅ‚ugi plikÃ³w zapisanych w formacie MS-Word
 Name:		laola
 Version:	013
 Release:	3.1
@@ -23,10 +23,10 @@ laola is a set of perl-based tools and libraries, able to
 extract/modify data in MS-Word .doc files. Can work with MS-Word 6.0,
 7.0 files, and in a limited range with MS-W 8.0.
 
-%description -l pl
-laola to zestaw narzêdzi i bibliotek, napisanych w perlu, które
-umo¿liwiaj± wydobycie oraz modyfikacjê danych zawartych w plikach .doc
-MS-Worda. Umo¿liwia pracê z plikami MS-Word 6.0, 7.0, oraz (w
+%description -l pl.UTF-8
+laola to zestaw narzÄ™dzi i bibliotek, napisanych w perlu, ktÃ³re
+umoÅ¼liwiajÄ… wydobycie oraz modyfikacjÄ™ danych zawartych w plikach .doc
+MS-Worda. UmoÅ¼liwia pracÄ™ z plikami MS-Word 6.0, 7.0, oraz (w
 ograniczonym zakresie) 8.0
 
 %prep
