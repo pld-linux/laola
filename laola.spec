@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	A set of tools to extract data from MS-Word .doc files
-Summary(pl.UTF-8):   Zestaw narzędzi służących do obsługi plików zapisanych w formacie MS-Word
+Summary(pl.UTF-8):	Zestaw narzędzi służących do obsługi plików zapisanych w formacie MS-Word
 Name:		laola
 Version:	013
 Release:	3.1
